@@ -1,6 +1,6 @@
 const express = require('express');
-const connectDB = require('./db');
 const bodyParser = require('body-parser');
+const sequelize = require('./db');
 const Gesture = require('./models/Gesture');
 const VoiceCommand = require('./models/VoiceCommand');
 const WhiteboardData = require('./models/WhiteboardData');
@@ -9,8 +9,10 @@ const Emotion = require('./models/Emotion');
 const app = express();
 app.use(bodyParser.json());
 
-// Connect to MongoDB
-connectDB();
+sequelize.sync()
+  .then(() => console.log('Models synchronized with MySQL'))
+  .catch(err => console.error('Error synchronizing models:', err));
+
 
 // Define routes
 app.get('/api/gestures', async (req, res) => {

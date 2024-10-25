@@ -1,8 +1,16 @@
-const mongoose = require('mongoose');
+// models/Emotion.js
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db');
 
-const EmotionSchema = new mongoose.Schema({
-    type: { type: String, required: true },
-    intensity: { type: Number, required: true },
+const Emotion = sequelize.define('Emotion', {
+  type: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  intensity: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
 });
 
-module.exports = mongoose.model('Emotion', EmotionSchema);
+module.exports = Emotion;

@@ -1,7 +1,12 @@
-const mongoose = require('mongoose');
+// models/WhiteboardData.js
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db');
 
-const WhiteboardDataSchema = new mongoose.Schema({
-    content: { type: String, required: true },
+const WhiteboardData = sequelize.define('WhiteboardData', {
+  content: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
-module.exports = mongoose.model('WhiteboardData', WhiteboardDataSchema);
+module.exports = WhiteboardData;

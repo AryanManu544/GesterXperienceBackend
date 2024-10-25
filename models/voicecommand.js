@@ -1,7 +1,12 @@
-const mongoose = require('mongoose');
+// models/VoiceCommand.js
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db');
 
-const VoiceCommandSchema = new mongoose.Schema({
-    command: { type: String, required: true },
+const VoiceCommand = sequelize.define('VoiceCommand', {
+  command: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
-module.exports = mongoose.model('VoiceCommand', VoiceCommandSchema);
+module.exports = VoiceCommand;

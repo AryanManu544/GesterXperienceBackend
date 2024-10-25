@@ -1,7 +1,12 @@
-const mongoose = require('mongoose');
+// models/Gesture.js
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db');
 
-const GestureSchema = new mongoose.Schema({
-    name: { type: String, required: true },
+const Gesture = sequelize.define('Gesture', {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
-module.exports = mongoose.model('Gesture', GestureSchema);
+module.exports = Gesture;
