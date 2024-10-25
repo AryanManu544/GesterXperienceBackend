@@ -5,10 +5,15 @@ const Gesture = require('./models/Gesture');
 const VoiceCommand = require('./models/VoiceCommand');
 const WhiteboardData = require('./models/WhiteboardData');
 const Emotion = require('./models/Emotion');
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
-
+const corsOptions = {
+    origin: 'http://localhost:3000', 
+    optionsSuccessStatus: 200
+  };
+app.use(cors(corsOptions))
 sequelize.sync()
   .then(() => console.log('Models synchronized with MySQL'))
   .catch(err => console.error('Error synchronizing models:', err));
@@ -22,6 +27,9 @@ app.get('/api/gestures', async (req, res) => {
     } catch (err) {
         res.status(500).send(err);
     }
+});
+app.get('/', (req, res) => {
+    res.send('Welcome to GestureXperience!');
 });
 
 app.post('/api/gestures', async (req, res) => {
